@@ -3,6 +3,20 @@
  * Especially for control of direction of supporting device.
 **/
 
+/*
+	STM  							RaspberryPi
+	PB_13	----------	GPIO16
+	PB_14	----------	GPIO20
+	PC_4 	----------	GPIO21
+
+				PB_13		PB_14		PC_4
+	Up			1				1				0
+	Down		1				0				1
+	Right		0				1				0
+	Left		0				0				1
+	Stop		0				0				0
+*/
+
 #include <ros/ros.h>
 #include <std_msgs/Char.h>
 #include <wiringPi.h>
@@ -60,15 +74,15 @@ int main(int argc, char **argv) {
 		if(changed){
 			switch(command){
 			case 'u':
-				digitalWrite(GPIO16,0);
-				digitalWrite(GPIO20,0);
-				digitalWrite(GPIO21,1);
+				digitalWrite(GPIO16,1);
+				digitalWrite(GPIO20,1);
+				digitalWrite(GPIO21,0);
 				ROS_INFO("UP");
 				break;
 			case 'd':
 				digitalWrite(GPIO16,1);
 				digitalWrite(GPIO20,0);
-				digitalWrite(GPIO21,0);
+				digitalWrite(GPIO21,1);
 				ROS_INFO("DOWN");
 				break;
 			case 'r':
@@ -78,9 +92,9 @@ int main(int argc, char **argv) {
 				ROS_INFO("RIGHT");
 				break;
 			case 'l':
-				digitalWrite(GPIO16,1);
-				digitalWrite(GPIO20,1);
-				digitalWrite(GPIO21,0);
+				digitalWrite(GPIO16,0);
+				digitalWrite(GPIO20,0);
+				digitalWrite(GPIO21,1);
 				ROS_INFO("LEFT");
 				break;
 			default:
