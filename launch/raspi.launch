@@ -1,0 +1,32 @@
+<launch>
+  <arg name="device" default=""/>
+  <arg name="channels" default="1"/>
+  <arg name="sample_rate" default="44100"/>
+  <arg name="format" default="mp3"/>
+  <arg name="ns" default="audio"/>
+
+	<arg name="dst" default="alsasink"/>
+
+  <group ns="$(arg ns)">
+    <node pkg="audio_capture" type="audio_capture" name="raspi_capture" output="screen">
+      <param name="bitrate" value="192"/>
+      <param name="device" value="$(arg device)"/>
+      <param name="channels" value="$(arg channels)"/>
+      <param name="sample_rate" value="$(arg sample_rate)"/>
+      <param name="format" value="$(arg format)"/>
+			<remap from="/audio/audio" to="/audio/raspi_sound" />
+    </node>
+		<node pkg="audio_play" type="audio_play" name="raspi_play" output="screen">
+    	<param name="dst" value="$(arg dst)"/>
+			<remap from="/audio/audio" to="/audio/laptop_sound" />
+  	</node>
+  </group>
+
+  <node pkg="usb_cam" type="usb_cam_node" name="raspi_cam">
+    <param name="pixel_format"  value="yuyv"/>
+		<param name="video_device"  value="/dev/video0"/>
+  </node>
+
+	<node pkg="surgical_support" type="gpio_controller" name="gpio_controller" />
+
+</launch>

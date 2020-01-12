@@ -1,0 +1,18 @@
+<launch>
+  <arg name="device" default=""/>
+  <arg name="channels" default="1"/>
+  <arg name="sample_rate" default="44100"/>
+  <arg name="format" default="mp3"/>
+  <arg name="ns" default="audio"/>
+
+  <group ns="$(arg ns)">
+    <node pkg="audio_capture" type="audio_capture" name="audio_capture" output="screen">
+      <param name="bitrate" value="192"/>
+      <param name="device" value="$(arg device)"/>
+      <param name="channels" value="$(arg channels)"/>
+      <param name="sample_rate" value="$(arg sample_rate)"/>
+      <param name="format" value="$(arg format)"/>
+    </node>
+  </group>
+
+</launch>
