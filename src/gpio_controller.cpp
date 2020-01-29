@@ -4,17 +4,17 @@
 **/
 
 /*
-	STM  							RaspberryPi
+	STM					RaspberryPi
 	PB_13	----------	GPIO16
 	PB_14	----------	GPIO20
 	PC_4 	----------	GPIO21
 
-				PB_13		PB_14		PC_4
-	Up			1				1				0
-	Down		1				0				1
-	Right		0				1				0
-	Left		0				0				1
-	Stop		0				0				0
+			PB_13	PB_14	PC_4
+	Up		1		1		0
+	Down	1		0		1
+	Right	0		1		0
+	Left	0		0		1
+	Stop	0		0		0
 */
 
 #include <ros/ros.h>

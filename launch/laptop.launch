@@ -9,6 +9,7 @@
   <arg name="dst" default="alsasink"/>
 
   <group ns="$(arg ns)">
+<!--	オーディオ関連は結局Mumbleを使用
 		<node pkg="audio_capture" type="audio_capture" name="laptop_capture" output="screen">
       <param name="bitrate" value="192"/>
       <param name="device" value="$(arg device)"/>
@@ -21,6 +22,7 @@
     	<param name="dst" value="$(arg dst)"/>
 			<remap from="/audio/audio" to="/audio/raspi_sound"/>
   	</node>
+-->
   </group>
 	
 	<node pkg="first_pkg" type="direction_controller.py" name="direction_controller" output="screen"/>
