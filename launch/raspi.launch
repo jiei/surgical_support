@@ -6,8 +6,9 @@
   <arg name="ns" default="audio"/>
 
 	<arg name="dst" default="alsasink"/>
-
+  
   <group ns="$(arg ns)">
+<!--	オーディオ関連は結局Mumbleを使用
     <node pkg="audio_capture" type="audio_capture" name="raspi_capture" output="screen">
       <param name="bitrate" value="192"/>
       <param name="device" value="$(arg device)"/>
@@ -16,10 +17,12 @@
       <param name="format" value="$(arg format)"/>
 			<remap from="/audio/audio" to="/audio/raspi_sound" />
     </node>
+
 		<node pkg="audio_play" type="audio_play" name="raspi_play" output="screen">
     	<param name="dst" value="$(arg dst)"/>
 			<remap from="/audio/audio" to="/audio/laptop_sound" />
   	</node>
+-->
   </group>
 
   <node pkg="usb_cam" type="usb_cam_node" name="raspi_cam">
